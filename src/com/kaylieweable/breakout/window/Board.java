@@ -37,9 +37,7 @@ public class Board extends JPanel implements Runnable{
 		//call to private method init
 		init();
 		
-		while(running){
-			//game loop
-		}
+		
 	}
 }
 

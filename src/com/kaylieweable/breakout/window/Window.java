@@ -37,7 +37,7 @@ public class Window {
 		//this would create a variable if we were to create more than one, same with board
 		//Window window = new Window(800, 600, "Breakout!", new Board());
 		
-		
+		new Window(800, 600, "Breakout!", new Board());
 		
 	}	
 }
