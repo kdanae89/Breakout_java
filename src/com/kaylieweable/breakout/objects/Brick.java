@@ -22,7 +22,7 @@ public class Brick extends GameObject{
 
 	public void render(Graphics g) {
 		
-		g.setColor(Color.red);
+		g.setColor(Color.blue);
 		//(int) changes the value from a float to an int
 		g.fillRect((int)x, (int)y, width, height);
 	}

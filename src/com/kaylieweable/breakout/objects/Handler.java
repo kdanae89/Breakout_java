@@ -40,13 +40,29 @@ public class Handler {
 		//reference linked list - remove objects
 		this.object.remove(object);
 	}
-	
+	//create our level(1) - brick design
 	public void createLevel(){
-		
+		//add object to linked list/create
 		int xpos = 50;
-		
+		//first row of bricks
 		for(int x = 0; x < 7; x++){
 			addObject(new Brick(xpos, 100, ObjectId.Brick));
+			//move bricks over so they don't overlap
+			xpos+= 100;
+		}
+		//second row
+		xpos = 50;
+		for(int x = 0; x < 7; x++){
+			addObject(new Brick(xpos, 120, ObjectId.Brick));
+			//move bricks over so they don't overlap
+			xpos+= 100;
+		}
+		//third row
+		xpos = 50;
+		for(int x = 0; x < 7; x++){
+			addObject(new Brick(xpos, 140, ObjectId.Brick));
+			//move bricks over so they don't overlap
+			xpos+= 100;
 		}
 	}
 }
