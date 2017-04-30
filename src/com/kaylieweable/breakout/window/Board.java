@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import com.kaylieweable.breakout.framework.KeyInput;
 import com.kaylieweable.breakout.framework.ObjectId;
 import com.kaylieweable.breakout.objects.Ball;
 import com.kaylieweable.breakout.window.Handler;
@@ -36,6 +37,8 @@ public class Board extends JPanel implements Runnable{
 		handler.addObject(new Ball(120, 548, handler, ObjectId.Ball));
 		//invoke createLevel from handler and create level 1
 		handler.createLevel();
+		
+		this.addKeyListener(new KeyInput(handler));
 	}
 	
 	public synchronized void start(){
