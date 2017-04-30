@@ -1,12 +1,14 @@
-package com.kaylieweable.breakout.objects;
+package com.kaylieweable.breakout.window;
 
 import java.awt.Graphics;
 import java.util.LinkedList;
 
 
+
 //import GameObject
 import com.kaylieweable.breakout.framework.GameObject;
 import com.kaylieweable.breakout.framework.ObjectId;
+import com.kaylieweable.breakout.objects.Brick;
 
 public class Handler {
 

@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 import com.kaylieweable.breakout.framework.ObjectId;
 import com.kaylieweable.breakout.objects.Ball;
-import com.kaylieweable.breakout.objects.Handler;
+import com.kaylieweable.breakout.window.Handler;
 import com.kaylieweable.breakout.objects.Paddle;
 //extends gives Board access to JPanel
 public class Board extends JPanel implements Runnable{
@@ -15,7 +15,7 @@ public class Board extends JPanel implements Runnable{
 	private boolean running = false;
 	private Thread thread;
 	//only one instance of width an height --> static
-	private static int WIDTH, HEIGHT;
+	public static int WIDTH, HEIGHT;
 	Handler handler;
 	
 	public Board(){
@@ -33,7 +33,7 @@ public class Board extends JPanel implements Runnable{
 		//create paddle
 		handler.addObject(new Paddle(100, 570, ObjectId.Paddle));
 		//create ball
-		handler.addObject(new Ball(120, 548, ObjectId.Ball));
+		handler.addObject(new Ball(120, 548, handler, ObjectId.Ball));
 		//invoke createLevel from handler and create level 1
 		handler.createLevel();
 	}
