@@ -31,7 +31,7 @@ public class Board extends JPanel implements Runnable{
 		
 		handler = new Handler();
 		//create paddle
-		handler.addObject(new Paddle(100, 570, ObjectId.Paddle));
+		handler.addObject(new Paddle(100, 570, handler, ObjectId.Paddle));
 		//create ball
 		handler.addObject(new Ball(120, 548, handler, ObjectId.Ball));
 		//invoke createLevel from handler and create level 1

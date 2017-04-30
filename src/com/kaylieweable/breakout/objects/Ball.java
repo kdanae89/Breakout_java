@@ -50,6 +50,7 @@ public class Ball extends GameObject{
 		//collision against the brick or paddle
 		
 		//falling below the paddle or board
+		resetBall();
 	}
 	
 	public void resetBall(){

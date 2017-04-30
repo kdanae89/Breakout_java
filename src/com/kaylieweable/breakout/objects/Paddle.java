@@ -6,19 +6,30 @@ import java.awt.Rectangle;
 
 import com.kaylieweable.breakout.framework.GameObject;
 import com.kaylieweable.breakout.framework.ObjectId;
+import com.kaylieweable.breakout.window.Handler;
 
 public class Paddle extends GameObject{
 
 	private int width = 62, height = 10;
-	
-	public Paddle(float x, float y, ObjectId id) {
+	Handler handler;
+	public Paddle(float x, float y, Handler handler, ObjectId id) {
 		super(x, y, id);
+		this.handler = handler;
 	}
 
 	public void move() {
 		x += velX;
 		
 		//determine if the paddle reaches the left or right bounds
+		if(x <= 0){
+			velX = 0;
+			x = 0;
+		}
+		//taking into account paddle width for edge touch on right bound
+		else if(x >= 738){
+			velX = 0;
+			x = 738;
+		}
 		
 	}
 
