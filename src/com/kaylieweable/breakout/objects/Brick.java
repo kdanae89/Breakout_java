@@ -46,19 +46,20 @@ public class Brick extends GameObject{
 		//sets rectangles around object for collision visualization
 		Graphics2D g2d = (Graphics2D) g;
 		g.setColor(Color.blue);
-		g2d.draw(getBounds());
+		g2d.draw(getBoundsTop());
+		g2d.draw(getBoundsBottom());
 	}
 
 	public Rectangle getBounds() {
 		return new Rectangle((int)x, (int)y, width, height);
 	}
-
+	//sets top of the brick
 	public Rectangle getBoundsTop() {
-		return null;
+		return new Rectangle((int) x - 1, (int)y, (int)width, (int)height/2);
 	}
-
+	//sets bottom of the brick
 	public Rectangle getBoundsBottom() {
-		return null;
+		return new Rectangle((int) x - 1, (int) ((int)y + (height/2)), (int)width, (int)height/2);
 	}
 
 	public Rectangle getBoundsLeft() {

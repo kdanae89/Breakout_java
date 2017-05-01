@@ -40,7 +40,9 @@ public class Paddle extends GameObject{
 		//sets rectangles around object for collision visualization
 		Graphics2D g2d = (Graphics2D) g;
 		g.setColor(Color.blue);
-		g2d.draw(getBounds());
+		g2d.draw(getBoundsTop());
+		g2d.draw(getBoundsLeft());
+		g2d.draw(getBoundsRight());
 	}
 
 	public Rectangle getBounds() {
@@ -49,7 +51,7 @@ public class Paddle extends GameObject{
 
 
 	public Rectangle getBoundsTop() {
-		return null;
+		return new Rectangle((int) ((int)x + (width/2) - ((width/2)/2)), (int)y, (int)width/2, (int)height/2);
 	}
 
 	public Rectangle getBoundsBottom() {
@@ -57,11 +59,11 @@ public class Paddle extends GameObject{
 	}
 
 	public Rectangle getBoundsLeft() {
-		return null;
+		return new Rectangle((int)x, (int)y, (int)15, (int)height);
 	}
 
 	public Rectangle getBoundsRight() {
-		return null;
+		return new Rectangle((int) ((int)x + width -15), (int)y, (int)15, (int)height);
 	}
 
 }
