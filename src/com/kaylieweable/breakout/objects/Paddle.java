@@ -2,6 +2,7 @@ package com.kaylieweable.breakout.objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import com.kaylieweable.breakout.framework.GameObject;
@@ -34,12 +35,16 @@ public class Paddle extends GameObject{
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.green);
+		g.setColor(Color.magenta);
 		g.fillRect((int)x, (int)y, width, height);
+		//sets rectangles around object for collision visualization
+		Graphics2D g2d = (Graphics2D) g;
+		g.setColor(Color.blue);
+		g2d.draw(getBounds());
 	}
 
 	public Rectangle getBounds() {
-		return null;
+		return new Rectangle((int)x, (int)y, width, height);
 	}
 
 

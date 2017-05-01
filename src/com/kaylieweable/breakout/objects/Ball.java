@@ -2,6 +2,7 @@ package com.kaylieweable.breakout.objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import com.kaylieweable.breakout.framework.GameObject;
@@ -25,6 +26,7 @@ public class Ball extends GameObject{
 			}
 		}
 
+		velY = velX = 1;
 	}
 
 	public void move() {
@@ -48,9 +50,29 @@ public class Ball extends GameObject{
 		}
 		
 		//collision against the brick or paddle
-		
+		Collision();
 		//falling below the paddle or board
 		resetBall();
+	}
+	
+	private void Collision(){
+		for(int i = 0; i < handler.object.size(); i++){
+			
+			GameObject tempObject = handler.object.get(i);
+			
+			if(tempObject.getId() == ObjectId.Paddle){
+				//sends the ball back up after hitting the paddle
+				if(getBounds().intersects(tempObject.getBounds())){
+					velY = -8;
+				}
+			}
+			else if(tempObject.getId() == ObjectId.Brick){
+				//sends the ball down after hitting the bricks
+				if(getBounds().intersects(tempObject.getBounds())){
+					velY = 8;
+				}
+			}
+		}
 	}
 	
 	public void resetBall(){
@@ -66,10 +88,14 @@ public class Ball extends GameObject{
 	public void render(Graphics g) {
 		g.setColor(Color.white);
 		g.fillOval((int)x, (int)y, width, height);
+		//sets rectangles around object for collision visualization
+		Graphics2D g2d = (Graphics2D) g;
+		g.setColor(Color.blue);
+		g2d.draw(getBounds());
 	}
 
 	public Rectangle getBounds() {
-		return null;
+		return new Rectangle((int)x, (int)y, width, height);
 	}
 
 	public Rectangle getBoundsTop() {
