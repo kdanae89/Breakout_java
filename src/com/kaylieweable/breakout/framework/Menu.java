@@ -24,7 +24,7 @@ public class Menu {
 		
 		Font font2 = new Font("arial", Font.BOLD, 30);
 		g.setFont(font2);
-		g.setColor(Color.BLUE);
+		g.setColor(Color.CYAN);
 		g.drawString("Play", Board.WIDTH/3 + 97, 185);
 		g.drawString("Quit", Board.WIDTH/3 + 97, 285);
 		

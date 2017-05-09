@@ -94,4 +94,50 @@ public class Handler {
 			xpos+= 100;
 		}
 	}
+	
+	public void createLevel2(){
+		
+		int xpos = 50;
+		int ypos = 100;
+		//creates first rows of bricks
+		for(int x = 0; x < 7; x++){
+			addObject(new Brick(xpos, ypos, this, ObjectId.Brick));
+			//move bricks over so they don't overlap
+			xpos+= 100;
+		}
+		
+		xpos = 50;
+		ypos = 120;
+		//creates second row of bricks
+		for(int x = 0; x < 10; x++){
+			addObject(new Brick(xpos, ypos, this, ObjectId.Brick));
+			ypos+= 20;
+		}
+		xpos = 650;
+		ypos = 120;
+		
+		for(int x = 0; x < 10; x++){
+			addObject(new Brick(xpos, ypos, this, ObjectId.Brick));
+			ypos+= 20;
+		}
+		xpos = 50;
+		ypos = 300;
+		
+		for(int x = 0; x < 7; x++){
+			addObject(new Brick(xpos, ypos, this, ObjectId.Brick));
+			//move bricks over so they don't overlap
+			xpos+= 100;
+		}
+		xpos = 200;
+		ypos = 140;
+		
+		for(int x = 0; x < 3; x++){
+			for(int y = 0; y < 5; y++){
+				addObject(new Brick(xpos, ypos, this, ObjectId.Brick));
+				ypos += 20;
+			}
+			ypos = 140;
+			xpos += 150;
+		}
+	}
 }

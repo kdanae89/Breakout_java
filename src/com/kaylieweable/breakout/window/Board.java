@@ -118,6 +118,7 @@ public class Board extends JPanel implements Runnable{
 						ball.resetBall();
 					}
 				}
+				handler.createLevel2();
 			}
 			
 			handler.move();
