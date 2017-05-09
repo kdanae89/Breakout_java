@@ -11,6 +11,7 @@ import com.kaylieweable.breakout.framework.Level;
 import com.kaylieweable.breakout.framework.Menu;
 import com.kaylieweable.breakout.framework.ObjectId;
 import com.kaylieweable.breakout.objects.Ball;
+import com.kaylieweable.breakout.objects.MouseInput;
 import com.kaylieweable.breakout.window.Handler;
 import com.kaylieweable.breakout.objects.Paddle;
 //extends gives Board access to JPanel
@@ -45,6 +46,7 @@ public class Board extends JPanel implements Runnable{
 		menu = new Menu();
 		
 		this.addKeyListener(new KeyInput(handler));
+		this.addMouseListener(new MouseInput(handler));
 	}
 	
 	public synchronized void start(){

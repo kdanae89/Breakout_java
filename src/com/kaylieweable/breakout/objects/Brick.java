@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import com.kaylieweable.breakout.framework.GameObject;
+import com.kaylieweable.breakout.framework.Level;
 import com.kaylieweable.breakout.framework.ObjectId;
 import com.kaylieweable.breakout.window.Handler;
 
@@ -45,7 +46,12 @@ public class Brick extends GameObject{
 
 	public void render(Graphics g) {
 		
+		if(handler.getLevel() == Level.level1){
 		g.setColor(Color.cyan);
+		}
+		else {
+			g.setColor(Color.PINK);
+		}
 		//(int) changes the value from a float to an int
 		g.fillRect((int)x, (int)y, width, height);
 		//sets rectangles around object for collision visualization
