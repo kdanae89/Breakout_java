@@ -32,6 +32,26 @@ public class KeyInput extends KeyAdapter{
 					tempObject.setVelX(10);
 				}
 			}
+			//if state dead allow spacebar to start game
+			if(tempObject.getId() == ObjectId.Ball){
+				if(key == KeyEvent.VK_SPACE){
+					if(handler.getState() == State.dead){
+						handler.setState(State.alive);
+						
+						tempObject.setVelY(-8);
+						tempObject.setVelX(-8);
+					}
+				}
+			}
+		}
+		//if p is pushed, pause or unpause
+		if(key == KeyEvent.VK_P){
+			if(handler.getState() == State.alive){
+				handler.setState(State.paused);
+			}
+			else if(handler.getState() == State.paused){
+				handler.setState(State.alive);
+			}
 		}
 	}
 	

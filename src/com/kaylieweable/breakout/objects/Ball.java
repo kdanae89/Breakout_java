@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 
 import com.kaylieweable.breakout.framework.GameObject;
 import com.kaylieweable.breakout.framework.ObjectId;
+import com.kaylieweable.breakout.framework.State;
 import com.kaylieweable.breakout.window.Board;
 import com.kaylieweable.breakout.window.Handler;
 
@@ -31,28 +32,40 @@ public class Ball extends GameObject{
 
 	public void move() {
 		
-		x += velX;
-		y += velY;
-		
-		//collision against wall
-		//sends the ball in the right direction
-		if(x <= 0){
-			velX = 8;
+		if(handler.getState() == State.dead){
+			//allows ball to move with paddle but not up or down
+			velX = paddleTemp.getVelX();
+			x += velX;
 		}
-		//sends the ball in the left direction
-		//a little before 800 so none of our ball is cut off
-		if(x >= 790){
-			velX = -8;
+		else if(handler.getState() == State.paused){
+			//handler state is paused nothing will happen - gameplay will freeze
 		}
-		//y increases from top to bottom so this sends ball toward bottom after hits top
-		if(y <= 0){
-			velY = 8;
+		else {
+			//when handler state is alive
+			x += velX;
+			y += velY;
+			
+			//collision against wall
+			//sends the ball in the right direction
+			if(x <= 0){
+				velX = 8;
+			}
+			//sends the ball in the left direction
+			//a little before 800 so none of our ball is cut off
+			if(x >= 790){
+				velX = -8;
+			}
+			//y increases from top to bottom so this sends ball toward bottom after hits top
+			if(y <= 0){
+				velY = 8;
+			}
+			
+			//collision against the brick or paddle
+			Collision();
+			//falling below the paddle or board
+			resetBall();
+			
 		}
-		
-		//collision against the brick or paddle
-		Collision();
-		//falling below the paddle or board
-		resetBall();
 	}
 	
 	private void Collision(){
@@ -88,6 +101,8 @@ public class Ball extends GameObject{
 	
 	public void resetBall(){
 		if(y > Board.HEIGHT){
+			//set state to dead
+			handler.setState(State.dead);
 			velX = 0;
 			velY = 0;
 			//sets ball in the center of the paddle when game resets

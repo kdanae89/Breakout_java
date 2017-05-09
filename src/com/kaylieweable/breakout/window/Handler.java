@@ -5,9 +5,11 @@ import java.util.LinkedList;
 
 
 
+
 //import GameObject
 import com.kaylieweable.breakout.framework.GameObject;
 import com.kaylieweable.breakout.framework.ObjectId;
+import com.kaylieweable.breakout.framework.State;
 import com.kaylieweable.breakout.objects.Brick;
 
 public class Handler {
@@ -16,6 +18,19 @@ public class Handler {
 	public LinkedList<GameObject> object = new LinkedList<GameObject>();
 	//temp object that refers to one of the object classes within linked list
 	private GameObject tempObject;
+	private State state;
+	//state constructor - start game off dead
+	public Handler(){
+		state = State.dead;
+	}
+	//state setter
+	public void setState(State state){
+		this.state = state;
+	}
+	//state getter
+	public State getState(){
+		return state;
+	}
 	
 	public void move(){
 		//loops through each object list and moves each object using the object's move method
