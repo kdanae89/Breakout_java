@@ -115,9 +115,9 @@ public class Ball extends GameObject{
 		g.setColor(Color.white);
 		g.fillOval((int)x, (int)y, width, height);
 		//sets rectangles around object for collision visualization
-		Graphics2D g2d = (Graphics2D) g;
-		g.setColor(Color.blue);
-		g2d.draw(getBounds());
+//		Graphics2D g2d = (Graphics2D) g;
+//		g.setColor(Color.blue);
+//		g2d.draw(getBounds());
 	}
 
 	public Rectangle getBounds() {

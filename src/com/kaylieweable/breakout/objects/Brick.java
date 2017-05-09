@@ -49,10 +49,10 @@ public class Brick extends GameObject{
 		//(int) changes the value from a float to an int
 		g.fillRect((int)x, (int)y, width, height);
 		//sets rectangles around object for collision visualization
-		Graphics2D g2d = (Graphics2D) g;
-		g.setColor(Color.blue);
-		g2d.draw(getBoundsTop());
-		g2d.draw(getBoundsBottom());
+//		Graphics2D g2d = (Graphics2D) g;
+//		g.setColor(Color.blue);
+//		g2d.draw(getBoundsTop());
+//		g2d.draw(getBoundsBottom());
 	}
 
 	public Rectangle getBounds() {

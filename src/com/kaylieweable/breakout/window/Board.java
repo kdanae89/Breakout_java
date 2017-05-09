@@ -34,7 +34,7 @@ public class Board extends JPanel implements Runnable{
 		//create paddle
 		handler.addObject(new Paddle(100, 570, handler, ObjectId.Paddle));
 		//create ball
-		handler.addObject(new Ball(120, 448, handler, ObjectId.Ball));
+		handler.addObject(new Ball(120, 548, handler, ObjectId.Ball));
 		//invoke createLevel from handler and create level 1
 		handler.createLevel();
 		
@@ -79,7 +79,7 @@ public class Board extends JPanel implements Runnable{
 			//try/catch block
 			try{
 				//thread sleeps 20 ms after move so everything can update before running/redrawing
-				thread.sleep(20);
+				thread.sleep(23);
 			}
 			//if any errors, we can see them
 			catch(InterruptedException ie){

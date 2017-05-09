@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 
 import com.kaylieweable.breakout.framework.GameObject;
 import com.kaylieweable.breakout.framework.ObjectId;
+import com.kaylieweable.breakout.framework.State;
 import com.kaylieweable.breakout.window.Handler;
 
 public class Paddle extends GameObject{
@@ -19,30 +20,36 @@ public class Paddle extends GameObject{
 	}
 
 	public void move() {
-		x += velX;
 		
-		//determine if the paddle reaches the left or right bounds
-		if(x <= 0){
-			velX = 0;
-			x = 0;
+		if(handler.getState() == State.paused){
+			
 		}
-		//taking into account paddle width for edge touch on right bound
-		else if(x >= 738){
-			velX = 0;
-			x = 738;
+		else{
+			//paddle will move in both alive or dead states
+			x += velX;
+			
+			//determine if the paddle reaches the left or right bounds
+			if(x < 0){
+				velX = 0;
+				x = 0;
+			}
+			//taking into account paddle width for edge touch on right bound
+			else if(x > 740){
+				velX = 0;
+				x = 740;
+			}
 		}
-		
 	}
 
 	public void render(Graphics g) {
 		g.setColor(Color.magenta);
 		g.fillRect((int)x, (int)y, width, height);
 		//sets rectangles around object for collision visualization
-		Graphics2D g2d = (Graphics2D) g;
-		g.setColor(Color.blue);
-		g2d.draw(getBoundsTop());
-		g2d.draw(getBoundsLeft());
-		g2d.draw(getBoundsRight());
+//		Graphics2D g2d = (Graphics2D) g;
+//		g.setColor(Color.blue);
+//		g2d.draw(getBoundsTop());
+//		g2d.draw(getBoundsLeft());
+//		g2d.draw(getBoundsRight());
 	}
 
 	public Rectangle getBounds() {
