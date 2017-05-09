@@ -41,30 +41,35 @@ public class Ball extends GameObject{
 			//handler state is paused nothing will happen - gameplay will freeze
 		}
 		else {
-			//when handler state is alive
-			x += velX;
-			y += velY;
 			
-			//collision against wall
-			//sends the ball in the right direction
-			if(x <= 0){
-				velX = 8;
+			if(handler.object.size() <= 2){
+				resetBall();
 			}
-			//sends the ball in the left direction
-			//a little before 800 so none of our ball is cut off
-			if(x >= 790){
-				velX = -8;
-			}
-			//y increases from top to bottom so this sends ball toward bottom after hits top
-			if(y <= 0){
-				velY = 8;
-			}
-			
-			//collision against the brick or paddle
-			Collision();
-			//falling below the paddle or board
-			resetBall();
-			
+			else{
+				//when handler state is alive
+				x += velX;
+				y += velY;
+				
+				//collision against wall
+				//sends the ball in the right direction
+				if(x <= 0){
+					velX = 8;
+				}
+				//sends the ball in the left direction
+				//a little before 800 so none of our ball is cut off
+				if(x >= 790){
+					velX = -8;
+				}
+				//y increases from top to bottom so this sends ball toward bottom after hits top
+				if(y <= 0){
+					velY = 8;
+				}
+				
+				//collision against the brick or paddle
+				Collision();
+				//falling below the paddle or board
+				resetBall();
+			}	
 		}
 	}
 	
@@ -100,7 +105,7 @@ public class Ball extends GameObject{
 	}
 	
 	public void resetBall(){
-		if(y > Board.HEIGHT){
+		if(y > Board.HEIGHT || handler.object.size() <= 2){
 			//set state to dead
 			handler.setState(State.dead);
 			velX = 0;

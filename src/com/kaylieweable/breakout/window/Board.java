@@ -5,7 +5,10 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import com.kaylieweable.breakout.framework.GameObject;
 import com.kaylieweable.breakout.framework.KeyInput;
+import com.kaylieweable.breakout.framework.Level;
+import com.kaylieweable.breakout.framework.Menu;
 import com.kaylieweable.breakout.framework.ObjectId;
 import com.kaylieweable.breakout.objects.Ball;
 import com.kaylieweable.breakout.window.Handler;
@@ -18,6 +21,7 @@ public class Board extends JPanel implements Runnable{
 	//only one instance of width an height --> static
 	public static int WIDTH, HEIGHT;
 	Handler handler;
+	Menu menu;
 	
 	public Board(){
 		
@@ -37,6 +41,8 @@ public class Board extends JPanel implements Runnable{
 		handler.addObject(new Ball(120, 548, handler, ObjectId.Ball));
 		//invoke createLevel from handler and create level 1
 		handler.createLevel();
+		
+		menu = new Menu();
 		
 		this.addKeyListener(new KeyInput(handler));
 	}
@@ -60,8 +66,13 @@ public class Board extends JPanel implements Runnable{
 		//starts at top left corner
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
-		//code to create our objects - invokes the render method
-		handler.render(g);
+		if(handler.getLevel() == Level.menu){
+			menu.render(g);
+		}
+		else {
+			//code to create our objects - invokes the render method
+			handler.render(g);
+		}
 		//get rid of any extra from the Graphics g object
 		g.dispose();
 	}
@@ -74,11 +85,11 @@ public class Board extends JPanel implements Runnable{
 			//game loop
 			//invokes handler.move method
 			move();
-			//specific to JPanel - rerender after they move
+			//specific to JPanel - re-render after they move
 			repaint();
 			//try/catch block
 			try{
-				//thread sleeps 20 ms after move so everything can update before running/redrawing
+				//thread sleeps 23 ms after move so everything can update before running/redrawing
 				thread.sleep(23);
 			}
 			//if any errors, we can see them
@@ -90,7 +101,27 @@ public class Board extends JPanel implements Runnable{
 	}
 	
 	private void move(){
-		handler.move();
+		
+		if(handler.getLevel() == Level.menu){
+			//nothing is moved or updated
+		}
+		else{
+			//if linked list < 2, only ball and padddle are left so end game or update to next level
+			if(handler.object.size() <= 2 && handler.getLevel() == Level.level1){
+				handler.setLevel(Level.level2);
+				
+				for(int i=0; i < handler.object.size(); i++){
+					GameObject tempObject = handler.object.get(i);
+					
+					if(tempObject.getId() == ObjectId.Ball){
+						Ball ball = (Ball)tempObject;
+						ball.resetBall();
+					}
+				}
+			}
+			
+			handler.move();
+		}
 	}
 }
 
