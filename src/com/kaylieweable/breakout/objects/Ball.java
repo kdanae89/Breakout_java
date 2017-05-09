@@ -62,13 +62,24 @@ public class Ball extends GameObject{
 			
 			if(tempObject.getId() == ObjectId.Paddle){
 				//sends the ball back up after hitting the paddle
-				if(getBounds().intersects(tempObject.getBounds())){
+				if(getBounds().intersects(tempObject.getBoundsTop())){
 					velY = -8;
+				}
+				else if(getBounds().intersects(tempObject.getBoundsLeft())){
+					velY = -8;
+					velX = -8;
+				}
+				else if(getBounds().intersects(tempObject.getBoundsRight())){
+					velY = -8;
+					velX = 8;
 				}
 			}
 			else if(tempObject.getId() == ObjectId.Brick){
 				//sends the ball down after hitting the bricks
-				if(getBounds().intersects(tempObject.getBounds())){
+				if(getBounds().intersects(tempObject.getBoundsTop())){
+					velY = -8;
+				}
+				else if(getBounds().intersects(tempObject.getBoundsBottom())){
 					velY = 8;
 				}
 			}

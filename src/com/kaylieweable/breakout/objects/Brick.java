@@ -30,7 +30,12 @@ public class Brick extends GameObject{
 			GameObject tempObject = handler.object.get(i);
 			
 			if(tempObject.getId() == ObjectId.Ball){
-				if(getBounds().intersects(tempObject.getBounds())){
+				
+				if(getBoundsTop().intersects(tempObject.getBounds())){
+					//this refers to the object that calls this method
+					handler.removeObject(this);
+				}
+				if(getBoundsBottom().intersects(tempObject.getBounds())){
 					
 					handler.removeObject(this);
 				}
